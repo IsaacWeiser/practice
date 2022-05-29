@@ -65,3 +65,69 @@ stack.peek();
 stack.isEmpty();
 stack.size();
 stack.print();
+
+// queue practice
+function queue() {
+  arr = [];
+
+  //prints out the data
+  this.print = () => {
+    for (let i = 0; i < arr.length; i++) console.log(`print: ${arr[i]}`);
+  };
+
+  //adds data
+  this.enqueue = (el) => {
+    arr.push(el);
+  };
+
+  //priority feature
+  this.priorityEnqueue = (element, position) => {
+    arr.splice(position - 1, 0, element);
+    console.log(arr);
+  };
+
+  //removes first item and returns its value
+  this.dequeue = () => {
+    const el1 = arr[0];
+    const copy = arr.slice(0);
+    arr = [];
+    for (let i = 1; i < copy.length; i++) {
+      arr.push(copy[i]);
+    }
+    return el1;
+  };
+
+  //return first data element
+  this.front = () => {
+    console.log(`front: ${arr[0]}`);
+    return arr[0];
+  };
+
+  //determines whether data is empty or not
+  this.isEmpty = () => {
+    if (arr.length == 0) {
+      return true;
+    }
+    return false;
+  };
+
+  //determine amount of data
+  this.size = () => {
+    return arr.length;
+  };
+}
+
+var q = new queue();
+console.log(q.isEmpty());
+q.enqueue("abc");
+q.enqueue(123);
+q.enqueue("def");
+
+q.dequeue();
+
+q.print();
+q.front();
+console.log(q.isEmpty());
+console.log(q.size());
+
+q.priorityEnqueue("test", 2);
